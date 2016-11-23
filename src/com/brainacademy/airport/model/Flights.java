@@ -1,11 +1,12 @@
 package com.brainacademy.airport.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Flights {
+public class Flights implements Serializable {
     public enum TypeFlight{ARRIVAL, DEPARTURE};
 
     private int flightId;

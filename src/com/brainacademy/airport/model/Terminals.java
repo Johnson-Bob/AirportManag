@@ -1,9 +1,11 @@
 package com.brainacademy.airport.model;
 
+import java.io.Serializable;
+
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Terminals {
+public class Terminals implements Serializable {
     private int terminalId;
     private String terminal;
 

@@ -1,9 +1,11 @@
 package com.brainacademy.airport.model;
 
+import java.io.Serializable;
+
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Nationalities {
+public class Nationalities implements Serializable {
     private int natId;
     private String nationality;
 

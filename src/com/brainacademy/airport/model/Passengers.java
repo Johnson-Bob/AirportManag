@@ -1,11 +1,12 @@
 package com.brainacademy.airport.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Passengers {
+public class Passengers implements Serializable {
     private int passId;
     private int flight;
     private String firstName;

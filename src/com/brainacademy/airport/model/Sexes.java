@@ -1,9 +1,11 @@
 package com.brainacademy.airport.model;
 
+import java.io.Serializable;
+
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Sexes {
+public class Sexes implements Serializable {
     private int sexId;
     private String sex;
 
