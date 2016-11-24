@@ -6,17 +6,17 @@ import java.io.Serializable;
  * Created by gladi on 22.11.2016.
  */
 public class Terminals implements Serializable {
-    private int terminalId;
+    private Integer terminalId;
     private String terminal;
 
     public Terminals() {
     }
 
-    public int getTerminalId() {
+    public Integer getTerminalId() {
         return terminalId;
     }
 
-    public void setTerminalId(int terminalId) {
+    public void setTerminalId(Integer terminalId) {
         this.terminalId = terminalId;
     }
 

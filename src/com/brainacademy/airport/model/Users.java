@@ -6,28 +6,28 @@ import java.io.Serializable;
  * Created by gladi on 22.11.2016.
  */
 public class Users implements Serializable {
-    private int userId;
-    private String user;
+    private Integer userId;
+    private String name;
     private String password;
     private boolean staff;
 
     public Users() {
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public String getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
