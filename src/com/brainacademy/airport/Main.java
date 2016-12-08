@@ -23,7 +23,7 @@ public class Main {
             mySQL.get(0).create(user);
             System.out.println(user);
             System.out.println(mySQL.get(0).getAll());
-            for (int i = 6; i <= 7; i++){
+            for (int i = 8; i <= 9; i++){
                 mySQL.get(0).delete(mySQL.get(0).read(i));
             }
             user.setName("Vasya");
