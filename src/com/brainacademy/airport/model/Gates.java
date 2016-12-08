@@ -1,23 +1,13 @@
 package com.brainacademy.airport.model;
 
-import java.io.Serializable;
-
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Gates implements Serializable {
+public class Gates implements Model {
     private int gateId;
     private int number;
 
     public Gates() {
-    }
-
-    public int getGateId() {
-        return gateId;
-    }
-
-    public void setGateId(int gateId) {
-        this.gateId = gateId;
     }
 
     public int getNumber() {
@@ -26,5 +16,15 @@ public class Gates implements Serializable {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    @Override
+    public int getId() {
+        return gateId;
+    }
+
+    @Override
+    public void setId(int id) {
+        gateId = id;
     }
 }

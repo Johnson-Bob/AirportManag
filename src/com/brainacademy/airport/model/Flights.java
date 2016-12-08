@@ -1,39 +1,28 @@
 package com.brainacademy.airport.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Flights implements Serializable {
-    public enum TypeFlight{ARRIVAL, DEPARTURE};
-
+public class Flights implements Model {
     private int flightId;
-    private TypeFlight type;
+    private String type;
     private Date date;
     private String number;
-    private int city;
-    private int terminal;
-    private int status;
-    private int gate;
+    private Cities city;
+    private Terminals terminal;
+    private Statuses status;
+    private Gates gate;
 
     public Flights() {
     }
 
-    public int getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(int flightId) {
-        this.flightId = flightId;
-    }
-
-    public TypeFlight getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(TypeFlight type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -53,35 +42,45 @@ public class Flights implements Serializable {
         this.number = number;
     }
 
-    public int getCity() {
+    public Cities getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(Cities city) {
         this.city = city;
     }
 
-    public int getTerminal() {
+    public Terminals getTerminal() {
         return terminal;
     }
 
-    public void setTerminal(int terminal) {
+    public void setTerminal(Terminals terminal) {
         this.terminal = terminal;
     }
 
-    public int getStatus() {
+    public Statuses getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Statuses status) {
         this.status = status;
     }
 
-    public int getGate() {
+    public Gates getGate() {
         return gate;
     }
 
-    public void setGate(int gate) {
+    public void setGate(Gates gate) {
         this.gate = gate;
+    }
+
+    @Override
+    public int getId() {
+        return flightId;
+    }
+
+    @Override
+    public void setId(int id) {
+        flightId = id;
     }
 }

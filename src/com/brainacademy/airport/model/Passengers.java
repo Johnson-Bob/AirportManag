@@ -6,34 +6,16 @@ import java.sql.Date;
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Passengers implements Serializable {
+public class Passengers implements Model {
     private int passId;
-    private int flight;
     private String firstName;
     private String secondName;
-    private int nationality;
+    private Nationalities nationality;
     private String passport;
     private Date birthday;
-    private int sex;
-    private int classFlight;
+    private Sexes sex;
 
     public Passengers() {
-    }
-
-    public int getPassId() {
-        return passId;
-    }
-
-    public void setPassId(int passId) {
-        this.passId = passId;
-    }
-
-    public int getFlight() {
-        return flight;
-    }
-
-    public void setFlight(int flight) {
-        this.flight = flight;
     }
 
     public String getFirstName() {
@@ -52,11 +34,11 @@ public class Passengers implements Serializable {
         this.secondName = secondName;
     }
 
-    public int getNationality() {
+    public Nationalities getNationality() {
         return nationality;
     }
 
-    public void setNationality(int nationality) {
+    public void setNationality(Nationalities nationality) {
         this.nationality = nationality;
     }
 
@@ -76,19 +58,21 @@ public class Passengers implements Serializable {
         this.birthday = birthday;
     }
 
-    public int getSex() {
+    public Sexes getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Sexes sex) {
         this.sex = sex;
     }
 
-    public int getClassFlight() {
-        return classFlight;
+    @Override
+    public int getId() {
+        return passId;
     }
 
-    public void setClassFlight(int classFlight) {
-        this.classFlight = classFlight;
+    @Override
+    public void setId(int id) {
+        passId = id;
     }
 }

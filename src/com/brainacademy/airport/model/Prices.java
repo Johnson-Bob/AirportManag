@@ -1,40 +1,30 @@
 package com.brainacademy.airport.model;
 
-import java.io.Serializable;
-
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Prices implements Serializable {
+public class Prices implements Model {
     private int pricesId;
-    private int flight;
-    private int classFlight;
+    private Flights flight;
+    private Classes classFlight;
     private float price;
 
     public Prices() {
     }
 
-    public int getPricesId() {
-        return pricesId;
-    }
-
-    public void setPricesId(int pricesId) {
-        this.pricesId = pricesId;
-    }
-
-    public int getFlight() {
+    public Flights getFlight() {
         return flight;
     }
 
-    public void setFlight(int flight) {
+    public void setFlight(Flights flight) {
         this.flight = flight;
     }
 
-    public int getClassFlight() {
+    public Classes getClassFlight() {
         return classFlight;
     }
 
-    public void setClassFlight(int classFlight) {
+    public void setClassFlight(Classes classFlight) {
         this.classFlight = classFlight;
     }
 
@@ -44,5 +34,15 @@ public class Prices implements Serializable {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public int getId() {
+        return pricesId;
+    }
+
+    @Override
+    public void setId(int id) {
+        pricesId = id;
     }
 }

@@ -1,11 +1,13 @@
 package com.brainacademy.airport.dao.mysql;
 
 import com.brainacademy.airport.dao.DaoFactory;
-import com.brainacademy.airport.dao.DaoUsers;
+import com.brainacademy.airport.dao.DaoRecords;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gladi on 23.11.2016.
@@ -25,8 +27,10 @@ public class MysqlFactory implements DaoFactory {
     }
 
     @Override
-    public DaoUsers getDaoUsers(Connection connection) {
-        return new MySqlUsers(connection);
+    public List<DaoRecords> getDao(Connection connection) {
+        List<DaoRecords> mySQLdao = new ArrayList<>();
+        mySQLdao.add(new MySqlUsers(connection));
+        return mySQLdao;
     }
 
     public String getUser() {

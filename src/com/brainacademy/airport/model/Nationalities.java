@@ -5,19 +5,11 @@ import java.io.Serializable;
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Nationalities implements Serializable {
+public class Nationalities implements Model {
     private int natId;
     private String nationality;
 
     public Nationalities() {
-    }
-
-    public int getNatId() {
-        return natId;
-    }
-
-    public void setNatId(int natId) {
-        this.natId = natId;
     }
 
     public String getNationality() {
@@ -26,5 +18,15 @@ public class Nationalities implements Serializable {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    @Override
+    public int getId() {
+        return natId;
+    }
+
+    @Override
+    public void setId(int id) {
+        natId = id;
     }
 }
