@@ -2,22 +2,25 @@ package com.brainacademy.airport.dao.mysql;
 
 import com.brainacademy.airport.dao.DaoFactory;
 import com.brainacademy.airport.dao.DaoRecords;
+import com.brainacademy.airport.model.Users;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by gladi on 23.11.2016.
  */
-public class MysqlFactory implements DaoFactory {
+public class FactoryMySql implements DaoFactory {
     private String user = "root";
     private String password = "123456";
     private String url = "jdbc:mysql://localhost:3306/airport?useSSL=false";
 
-    public MysqlFactory() {
+    public FactoryMySql() {
     }
 
     @Override
@@ -27,9 +30,20 @@ public class MysqlFactory implements DaoFactory {
     }
 
     @Override
-    public List<DaoRecords> getDao(Connection connection) {
-        List<DaoRecords> mySQLdao = new ArrayList<>();
-        mySQLdao.add(new MySqlUsers(connection));
+    public Map<String, DaoRecords> getDao(Connection connection) {
+        Map<String, DaoRecords> mySQLdao = new HashMap<>();
+        mySQLdao.put("users", new MySqlUsers(connection));
+        mySQLdao.put("cities", new MySqlCities(connection));
+        mySQLdao.put("classes", new MySqlClasses(connection));
+        mySQLdao.put("gates", new MySqlGates(connection));
+        mySQLdao.put("nationalities", new MySqlNationalities(connection));
+        mySQLdao.put("sexes", new MySqlSexes(connection));
+        mySQLdao.put("statuses", new MySqlStatuses(connection));
+        mySQLdao.put("terminals", new MySqlTerminals(connection));
+        mySQLdao.put("flights", new MySqlFlights(connection));
+        mySQLdao.put("passengers", new MySqlPassengers(connection));
+        mySQLdao.put("prices", new MySqlPrices(connection));
+        mySQLdao.put("tickets", new MySqlTickets(connection));
         return mySQLdao;
     }
 

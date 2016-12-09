@@ -10,10 +10,10 @@ public class Flights implements Model {
     private String type;
     private Date date;
     private String number;
-    private Cities city;
-    private Terminals terminal;
-    private Statuses status;
-    private Gates gate;
+    private int city;
+    private int terminal;
+    private int status;
+    private int gate;
 
     public Flights() {
     }
@@ -42,35 +42,35 @@ public class Flights implements Model {
         this.number = number;
     }
 
-    public Cities getCity() {
+    public int getCity() {
         return city;
     }
 
-    public void setCity(Cities city) {
+    public void setCity(int city) {
         this.city = city;
     }
 
-    public Terminals getTerminal() {
+    public int getTerminal() {
         return terminal;
     }
 
-    public void setTerminal(Terminals terminal) {
+    public void setTerminal(int terminal) {
         this.terminal = terminal;
     }
 
-    public Statuses getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Statuses status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public Gates getGate() {
+    public int getGate() {
         return gate;
     }
 
-    public void setGate(Gates gate) {
+    public void setGate(int gate) {
         this.gate = gate;
     }
 

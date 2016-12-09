@@ -1,6 +1,5 @@
 package com.brainacademy.airport.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -10,10 +9,10 @@ public class Passengers implements Model {
     private int passId;
     private String firstName;
     private String secondName;
-    private Nationalities nationality;
+    private int nationality;
     private String passport;
     private Date birthday;
-    private Sexes sex;
+    private int sex;
 
     public Passengers() {
     }
@@ -34,11 +33,11 @@ public class Passengers implements Model {
         this.secondName = secondName;
     }
 
-    public Nationalities getNationality() {
+    public int getNationality() {
         return nationality;
     }
 
-    public void setNationality(Nationalities nationality) {
+    public void setNationality(int nationality) {
         this.nationality = nationality;
     }
 
@@ -58,11 +57,11 @@ public class Passengers implements Model {
         this.birthday = birthday;
     }
 
-    public Sexes getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(Sexes sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

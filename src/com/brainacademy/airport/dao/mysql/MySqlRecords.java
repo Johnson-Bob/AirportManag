@@ -116,6 +116,7 @@ public abstract class MySqlRecords implements DaoRecords {
     }
 
 
+
     //Set parametrs of PreparedStatement
     protected abstract void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException;
 

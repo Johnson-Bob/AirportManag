@@ -5,26 +5,26 @@ package com.brainacademy.airport.model;
  */
 public class Prices implements Model {
     private int pricesId;
-    private Flights flight;
-    private Classes classFlight;
+    private int flight;
+    private int classFlight;
     private float price;
 
     public Prices() {
     }
 
-    public Flights getFlight() {
+    public int getFlight() {
         return flight;
     }
 
-    public void setFlight(Flights flight) {
+    public void setFlight(int flight) {
         this.flight = flight;
     }
 
-    public Classes getClassFlight() {
+    public int getClassFlight() {
         return classFlight;
     }
 
-    public void setClassFlight(Classes classFlight) {
+    public void setClassFlight(int classFlight) {
         this.classFlight = classFlight;
     }
 

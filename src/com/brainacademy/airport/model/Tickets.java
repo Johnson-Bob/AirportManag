@@ -5,35 +5,35 @@ package com.brainacademy.airport.model;
  */
 public class Tickets implements Model {
     private int ticketId;
-    private Passengers passenger;
-    private Flights flight;
-    private Classes classes;
+    private int passenger;
+    private int flight;
+    private int classFlight;
 
     public Tickets() {
     }
 
-    public Passengers getPassenger() {
+    public int getPassenger() {
         return passenger;
     }
 
-    public void setPassenger(Passengers passenger) {
+    public void setPassenger(int passenger) {
         this.passenger = passenger;
     }
 
-    public Flights getFlight() {
+    public int getFlight() {
         return flight;
     }
 
-    public void setFlight(Flights flight) {
+    public void setFlight(int flight) {
         this.flight = flight;
     }
 
-    public Classes getClasses() {
-        return classes;
+    public int getClassFlight() {
+        return classFlight;
     }
 
-    public void setClasses(Classes classes) {
-        this.classes = classes;
+    public void setClassFlight(int classFlight) {
+        this.classFlight = classFlight;
     }
 
     @Override

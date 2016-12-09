@@ -14,7 +14,6 @@ import java.util.List;
  */
 //** The object for managing the persistent state of the object Users */
 public interface DaoRecords {
-
     /** It creates a new record and the corresponding object */
     public void create(Model record) throws PersistException;
 
