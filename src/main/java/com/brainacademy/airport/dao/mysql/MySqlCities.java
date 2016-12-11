@@ -2,7 +2,6 @@ package com.brainacademy.airport.dao.mysql;
 
 import com.brainacademy.airport.model.Cities;
 import com.brainacademy.airport.model.Model;
-import com.brainacademy.airport.model.Users;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlCities extends MySqlRecords {
+public class MySqlCities extends MySqlRecord {
     public MySqlCities(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM cities";

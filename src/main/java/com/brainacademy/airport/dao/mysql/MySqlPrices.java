@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlPrices extends MySqlRecords {
+public class MySqlPrices extends MySqlRecord {
     public MySqlPrices(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM prices";

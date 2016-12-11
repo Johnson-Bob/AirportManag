@@ -1,6 +1,5 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Flights;
 import com.brainacademy.airport.model.Model;
 import com.brainacademy.airport.model.Passengers;
 
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlPassengers extends MySqlRecords {
+public class MySqlPassengers extends MySqlRecord {
     public MySqlPassengers(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM passengers";

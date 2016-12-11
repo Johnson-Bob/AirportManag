@@ -1,6 +1,5 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Classes;
 import com.brainacademy.airport.model.Model;
 import com.brainacademy.airport.model.Terminals;
 
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlTerminals extends MySqlRecords {
+public class MySqlTerminals extends MySqlRecord {
     public MySqlTerminals(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM terminals";

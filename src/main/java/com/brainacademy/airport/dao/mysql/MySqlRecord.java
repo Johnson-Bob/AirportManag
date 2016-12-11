@@ -1,6 +1,6 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.dao.DaoRecords;
+import com.brainacademy.airport.dao.DaoRecord;
 import com.brainacademy.airport.dao.PersistException;
 import com.brainacademy.airport.model.Model;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by gladi on 24.11.2016.
  */
-public abstract class MySqlRecords implements DaoRecords {
+public abstract class MySqlRecord implements DaoRecord {
     private Connection connection;
     protected String selectQuery;
     protected String selectLastInsert;
@@ -21,10 +21,10 @@ public abstract class MySqlRecords implements DaoRecords {
     protected String updateQuery;
     protected String deleteQuery;
 
-    public MySqlRecords() {
+    public MySqlRecord() {
     }
 
-    public MySqlRecords(Connection connection) {
+    public MySqlRecord(Connection connection) {
         this.connection = connection;
     }
 

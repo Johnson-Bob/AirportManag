@@ -2,7 +2,6 @@ package com.brainacademy.airport.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,5 +11,5 @@ public interface DaoFactory {
 
     Connection getConnection() throws SQLException;
 
-    Map<String, DaoRecords> getDao(Connection connection);
+    Map<String, DaoRecord> getDao(Connection connection);
 }

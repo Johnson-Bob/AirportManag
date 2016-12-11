@@ -1,6 +1,5 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Classes;
 import com.brainacademy.airport.model.Model;
 import com.brainacademy.airport.model.Statuses;
 
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlStatuses extends MySqlRecords {
+public class MySqlStatuses extends MySqlRecord {
     public MySqlStatuses(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM statuses";

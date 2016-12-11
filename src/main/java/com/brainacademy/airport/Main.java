@@ -1,7 +1,7 @@
 package com.brainacademy.airport;
 
 import com.brainacademy.airport.dao.DaoFactory;
-import com.brainacademy.airport.dao.DaoRecords;
+import com.brainacademy.airport.dao.DaoRecord;
 import com.brainacademy.airport.dao.PersistException;
 import com.brainacademy.airport.dao.mysql.FactoryMySql;
 import com.brainacademy.airport.model.Cities;
@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         DaoFactory mysqlFactory = new FactoryMySql();
         try (Connection connection = mysqlFactory.getConnection()){
-            Map<String, DaoRecords> mySQL = mysqlFactory.getDao(connection);
+            Map<String, DaoRecord> mySQL = mysqlFactory.getDao(connection);
             Users user = new Users("Test", "test456", false);
             Cities cities = new Cities();
             System.out.println(user);

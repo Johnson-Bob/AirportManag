@@ -1,6 +1,5 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Classes;
 import com.brainacademy.airport.model.Gates;
 import com.brainacademy.airport.model.Model;
 
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlGates extends MySqlRecords {
+public class MySqlGates extends MySqlRecord {
     public MySqlGates(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM gates";

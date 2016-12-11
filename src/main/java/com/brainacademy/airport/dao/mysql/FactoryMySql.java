@@ -1,15 +1,12 @@
 package com.brainacademy.airport.dao.mysql;
 
 import com.brainacademy.airport.dao.DaoFactory;
-import com.brainacademy.airport.dao.DaoRecords;
-import com.brainacademy.airport.model.Users;
+import com.brainacademy.airport.dao.DaoRecord;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,8 +27,8 @@ public class FactoryMySql implements DaoFactory {
     }
 
     @Override
-    public Map<String, DaoRecords> getDao(Connection connection) {
-        Map<String, DaoRecords> mySQLdao = new HashMap<>();
+    public Map<String, DaoRecord> getDao(Connection connection) {
+        Map<String, DaoRecord> mySQLdao = new HashMap<>();
         mySQLdao.put("users", new MySqlUsers(connection));
         mySQLdao.put("cities", new MySqlCities(connection));
         mySQLdao.put("classes", new MySqlClasses(connection));

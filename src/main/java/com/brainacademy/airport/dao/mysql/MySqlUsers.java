@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlUsers extends MySqlRecords {
+public class MySqlUsers extends MySqlRecord {
     public MySqlUsers(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM users";
