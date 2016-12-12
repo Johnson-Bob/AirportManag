@@ -1,18 +1,17 @@
-package com.brainacademy.airport.model;
+package com.brainacademy.airport.entity;
 
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Users implements Model {
-    private int userId;
+public class User extends Entity {
     private String name;
     private String password;
     private boolean staff;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(String name, String password, boolean staff) {
+    public User(String name, String password, boolean staff) {
         this.name = name;
         this.password = password;
         this.staff = staff;
@@ -40,25 +39,5 @@ public class Users implements Model {
 
     public void setStaff(boolean staff) {
         this.staff = staff;
-    }
-
-    @Override
-    public int getId() {
-        return userId;
-    }
-
-    @Override
-    public void setId(int id) {
-        userId = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", staff=" + staff +
-                '}';
     }
 }

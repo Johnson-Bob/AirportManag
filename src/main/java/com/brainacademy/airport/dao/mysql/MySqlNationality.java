@@ -1,7 +1,7 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Model;
-import com.brainacademy.airport.model.Nationalities;
+import com.brainacademy.airport.entity.Entity;
+import com.brainacademy.airport.entity.Nationality;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlNationalities extends MySqlRecord {
-    public MySqlNationalities(Connection connection) {
+public class MySqlNationality extends MySqlRecord<Nationality> {
+    public MySqlNationality(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM nationalities";
         selectLastInsert = " WHERE nat_id = LAST_INSERT_ID();";
@@ -25,19 +25,18 @@ public class MySqlNationalities extends MySqlRecord {
     }
 
     @Override
-    protected void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException {
-        Nationalities nationalities = (Nationalities) model;
-        ps.setString(1, nationalities.getNationality());
+    protected void setPreparedStatement(PreparedStatement ps, Nationality entity, boolean where) throws SQLException {
+        ps.setString(1, entity.getNationality());
         if (where){
-            ps.setInt(2, nationalities.getId());
+            ps.setInt(2, entity.getId());
         }
     }
 
     @Override
-    protected List<Model> parseResultSet(ResultSet rs) throws SQLException {
-        List<Model> result = new ArrayList<>();
+    protected List<Nationality> parseResultSet(ResultSet rs) throws SQLException {
+        List<Nationality> result = new ArrayList<>();
         while (rs.next()){
-            Nationalities nationality = new Nationalities();
+            Nationality nationality = new Nationality();
             nationality.setId(rs.getInt("nat_id"));
             nationality.setNationality(rs.getString("nationality"));
             result.add(nationality);

@@ -1,0 +1,20 @@
+insert into statuses(`status`) value ('chek-in');
+insert into statuses(`status`) value ('gate closed');
+insert into statuses(`status`) value ('arrived');
+insert into statuses(`status`) value ('departed at');
+insert into statuses(`status`) value ('unknown');
+insert into statuses(`status`) value ('canceled');
+insert into statuses(`status`) value ('expected at');
+insert into statuses(`status`) value ('delayed');
+insert into statuses(`status`) value ('in flight');
+insert into classFlight (`class_name`) value ('busines');
+insert into classFlight (`class_name`) value ('economy');
+insert into gates (`number`) value (1);
+insert into gates (`number`) value (2);
+insert into gates (`number`) value (3);
+insert into gates (`number`) value (4);
+insert into gates (`number`) value (5);
+insert into terminals (`terminal`) value ('north');
+insert into terminals (`terminal`) value ('east');
+insert into terminals (`terminal`) value ('west');
+

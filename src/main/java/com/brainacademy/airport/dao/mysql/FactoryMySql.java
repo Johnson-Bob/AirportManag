@@ -29,18 +29,17 @@ public class FactoryMySql implements DaoFactory {
     @Override
     public Map<String, DaoRecord> getDao(Connection connection) {
         Map<String, DaoRecord> mySQLdao = new HashMap<>();
-        mySQLdao.put("users", new MySqlUsers(connection));
-        mySQLdao.put("cities", new MySqlCities(connection));
-        mySQLdao.put("classes", new MySqlClasses(connection));
-        mySQLdao.put("gates", new MySqlGates(connection));
-        mySQLdao.put("nationalities", new MySqlNationalities(connection));
-        mySQLdao.put("sexes", new MySqlSexes(connection));
-        mySQLdao.put("statuses", new MySqlStatuses(connection));
-        mySQLdao.put("terminals", new MySqlTerminals(connection));
-        mySQLdao.put("flights", new MySqlFlights(connection));
-        mySQLdao.put("passengers", new MySqlPassengers(connection));
-        mySQLdao.put("prices", new MySqlPrices(connection));
-        mySQLdao.put("tickets", new MySqlTickets(connection));
+        mySQLdao.put("users", new MySqlUser(connection));
+        mySQLdao.put("cities", new MySqlCity(connection));
+        mySQLdao.put("classes", new MySqlClassFlight(connection));
+        mySQLdao.put("gates", new MySqlGate(connection));
+        mySQLdao.put("nationalities", new MySqlNationality(connection));
+        mySQLdao.put("statuses", new MySqlStatus(connection));
+        mySQLdao.put("terminals", new MySqlTerminal(connection));
+        mySQLdao.put("flights", new MySqlFlight(connection));
+        mySQLdao.put("passengers", new MySqlPassenger(connection));
+        mySQLdao.put("prices", new MySqlPrice(connection));
+        mySQLdao.put("tickets", new MySqlTicket(connection));
         return mySQLdao;
     }
 

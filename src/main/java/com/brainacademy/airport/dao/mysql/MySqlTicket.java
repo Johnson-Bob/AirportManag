@@ -1,7 +1,7 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Model;
-import com.brainacademy.airport.model.Tickets;
+import com.brainacademy.airport.entity.Entity;
+import com.brainacademy.airport.entity.Ticket;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlTickets extends MySqlRecord {
-    public MySqlTickets(Connection connection) {
+public class MySqlTicket extends MySqlRecord<Ticket> {
+    public MySqlTicket(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM tickets";
         selectLastInsert = " WHERE ticket_id = LAST_INSERT_ID();";
@@ -26,21 +26,20 @@ public class MySqlTickets extends MySqlRecord {
     }
 
     @Override
-    protected void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException {
-        Tickets ticket = (Tickets) model;
-        ps.setInt(1, ticket.getPassenger());
-        ps.setInt(2, ticket.getFlight());
-        ps.setFloat(3, ticket.getClassFlight());
+    protected void setPreparedStatement(PreparedStatement ps, Ticket entity, boolean where) throws SQLException {
+        ps.setInt(1, entity.getPassenger());
+        ps.setInt(2, entity.getFlight());
+        ps.setFloat(3, entity.getClassFlight());
         if (where){
-            ps.setInt(4, ticket.getId());
+            ps.setInt(4, entity.getId());
         }
     }
 
     @Override
-    protected List<Model> parseResultSet(ResultSet rs) throws SQLException {
-        List<Model> result = new ArrayList<>();
+    protected List<Ticket> parseResultSet(ResultSet rs) throws SQLException {
+        List<Ticket> result = new ArrayList<>();
         while (rs.next()){
-            Tickets ticket = new Tickets();
+            Ticket ticket = new Ticket();
             ticket.setId(rs.getInt("ticket_id"));
             ticket.setPassenger(rs.getInt("passenger"));
             ticket.setFlight(rs.getInt("flight"));

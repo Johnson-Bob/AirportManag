@@ -1,20 +1,22 @@
-package com.brainacademy.airport.model;
+package com.brainacademy.airport.entity;
+
+import com.brainacademy.airport.dao.PersistException;
 
 import java.sql.Date;
 
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Passengers implements Model {
-    private int passId;
+public class Passenger extends Entity {
+    public enum Gender{MALE, FEMALE};
     private String firstName;
     private String secondName;
     private int nationality;
     private String passport;
     private Date birthday;
-    private int sex;
+    private Gender gender;
 
-    public Passengers() {
+    public Passenger() {
     }
 
     public String getFirstName() {
@@ -57,21 +59,16 @@ public class Passengers implements Model {
         this.birthday = birthday;
     }
 
-    public int getSex() {
-        return sex;
+    public String getGender() {
+        return gender.name();
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
+    public void setGender(String gender) throws PersistException {
+        try {
+            this.gender = Gender.valueOf(gender);
+        }catch (IllegalArgumentException | NullPointerException e){
+            throw new PersistException(e);
+        }
 
-    @Override
-    public int getId() {
-        return passId;
-    }
-
-    @Override
-    public void setId(int id) {
-        passId = id;
     }
 }

@@ -1,7 +1,7 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Gates;
-import com.brainacademy.airport.model.Model;
+import com.brainacademy.airport.entity.Gate;
+import com.brainacademy.airport.entity.Entity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlGates extends MySqlRecord {
-    public MySqlGates(Connection connection) {
+public class MySqlGate extends MySqlRecord<Gate> {
+    public MySqlGate(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM gates";
         selectLastInsert = " WHERE gate_id = LAST_INSERT_ID();";
@@ -25,21 +25,20 @@ public class MySqlGates extends MySqlRecord {
     }
 
     @Override
-    protected void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException {
-        Gates gate = (Gates)model;
-        ps.setInt(1, gate.getNumber());
+    protected void setPreparedStatement(PreparedStatement ps, Gate entity, boolean where) throws SQLException {
+        ps.setInt(1, entity.getNumberGate());
         if (where){
-            ps.setInt(2, gate.getId());
+            ps.setInt(2, entity.getId());
         }
     }
 
     @Override
-    protected List<Model> parseResultSet(ResultSet rs) throws SQLException {
-        List<Model> result = new ArrayList<>();
+    protected List<Gate> parseResultSet(ResultSet rs) throws SQLException {
+        List<Gate> result = new ArrayList<>();
         while (rs.next()){
-            Gates gate = new Gates();
+            Gate gate = new Gate();
             gate.setId(rs.getInt("gate_id"));
-            gate.setNumber(rs.getInt("number"));
+            gate.setNumberGate(rs.getInt("number"));
             result.add(gate);
         }
         return result;

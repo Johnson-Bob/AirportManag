@@ -1,7 +1,7 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Model;
-import com.brainacademy.airport.model.Users;
+import com.brainacademy.airport.entity.Entity;
+import com.brainacademy.airport.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlUsers extends MySqlRecord {
-    public MySqlUsers(Connection connection) {
+public class MySqlUser extends MySqlRecord<User> {
+    public MySqlUser(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM users";
         selectLastInsert = " WHERE user_id = LAST_INSERT_ID();";
@@ -25,21 +25,20 @@ public class MySqlUsers extends MySqlRecord {
     }
 
     @Override
-    protected void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException {
-        Users users = (Users)model;
-        ps.setString(1, users.getName());
-        ps.setString(2, users.getPassword());
-        ps.setBoolean(3, users.isStaff());
+    protected void setPreparedStatement(PreparedStatement ps, User entity, boolean where) throws SQLException {
+        ps.setString(1, entity.getName());
+        ps.setString(2, entity.getPassword());
+        ps.setBoolean(3, entity.isStaff());
         if (where){
-            ps.setInt(4, users.getId());
+            ps.setInt(4, entity.getId());
         }
     }
 
     @Override
-    protected List<Model> parseResultSet(ResultSet rs) throws SQLException {
-        List<Model> result = new ArrayList<>();
+    protected List<User> parseResultSet(ResultSet rs) throws SQLException {
+        List<User> result = new ArrayList<>();
         while (rs.next()){
-            Users user = new Users();
+            User user = new User();
             user.setId(rs.getInt("user_id"));
             user.setName(rs.getString("name"));
             user.setPassword(rs.getNString("password"));

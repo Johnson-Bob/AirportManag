@@ -1,7 +1,7 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Model;
-import com.brainacademy.airport.model.Terminals;
+import com.brainacademy.airport.entity.Entity;
+import com.brainacademy.airport.entity.Terminal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlTerminals extends MySqlRecord {
-    public MySqlTerminals(Connection connection) {
+public class MySqlTerminal extends MySqlRecord<Terminal> {
+    public MySqlTerminal(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM terminals";
         selectLastInsert = " WHERE terminal_id = LAST_INSERT_ID();";
@@ -25,19 +25,18 @@ public class MySqlTerminals extends MySqlRecord {
     }
 
     @Override
-    protected void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException {
-        Terminals terminal = (Terminals) model;
-        ps.setString(1, terminal.getTerminal());
+    protected void setPreparedStatement(PreparedStatement ps, Terminal entity, boolean where) throws SQLException {
+        ps.setString(1, entity.getTerminal());
         if (where){
-            ps.setInt(2, terminal.getId());
+            ps.setInt(2, entity.getId());
         }
     }
 
     @Override
-    protected List<Model> parseResultSet(ResultSet rs) throws SQLException {
-        List<Model> result = new ArrayList<>();
+    protected List<Terminal> parseResultSet(ResultSet rs) throws SQLException {
+        List<Terminal> result = new ArrayList<>();
         while (rs.next()){
-            Terminals terminal = new Terminals();
+            Terminal terminal = new Terminal();
             terminal.setId(rs.getInt("terminal_id"));
             terminal.setTerminal(rs.getString("terminal"));
             result.add(terminal);

@@ -1,7 +1,7 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Model;
-import com.brainacademy.airport.model.Prices;
+import com.brainacademy.airport.entity.Entity;
+import com.brainacademy.airport.entity.Price;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlPrices extends MySqlRecord {
-    public MySqlPrices(Connection connection) {
+public class MySqlPrice extends MySqlRecord<Price> {
+    public MySqlPrice(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM prices";
         selectLastInsert = " WHERE prices_id = LAST_INSERT_ID();";
@@ -26,21 +26,20 @@ public class MySqlPrices extends MySqlRecord {
     }
 
     @Override
-    protected void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException {
-        Prices price = (Prices) model;
-        ps.setInt(1, price.getFlight());
-        ps.setInt(2, price.getClassFlight());
-        ps.setFloat(3, price.getPrice());
+    protected void setPreparedStatement(PreparedStatement ps, Price entity, boolean where) throws SQLException {
+        ps.setInt(1, entity.getFlight());
+        ps.setInt(2, entity.getClassFlight());
+        ps.setFloat(3, entity.getPrice());
         if (where){
-            ps.setInt(4, price.getId());
+            ps.setInt(4, entity.getId());
         }
     }
 
     @Override
-    protected List<Model> parseResultSet(ResultSet rs) throws SQLException {
-        List<Model> result = new ArrayList<>();
+    protected List<Price> parseResultSet(ResultSet rs) throws SQLException {
+        List<Price> result = new ArrayList<>();
         while (rs.next()){
-            Prices price = new Prices();
+            Price price = new Price();
             price.setId(rs.getInt("prices_id"));
             price.setFlight(rs.getInt("flight"));
             price.setClassFlight(rs.getInt("class"));

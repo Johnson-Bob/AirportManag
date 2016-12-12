@@ -1,15 +1,14 @@
-package com.brainacademy.airport.model;
+package com.brainacademy.airport.entity;
 
 /**
  * Created by gladi on 08.12.2016.
  */
-public class Tickets implements Model {
-    private int ticketId;
+public class Ticket extends Entity {
     private int passenger;
     private int flight;
     private int classFlight;
 
-    public Tickets() {
+    public Ticket() {
     }
 
     public int getPassenger() {
@@ -34,15 +33,5 @@ public class Tickets implements Model {
 
     public void setClassFlight(int classFlight) {
         this.classFlight = classFlight;
-    }
-
-    @Override
-    public int getId() {
-        return ticketId;
-    }
-
-    @Override
-    public void setId(int id) {
-        ticketId = id;
     }
 }

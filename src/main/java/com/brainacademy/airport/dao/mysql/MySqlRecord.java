@@ -2,7 +2,7 @@ package com.brainacademy.airport.dao.mysql;
 
 import com.brainacademy.airport.dao.DaoRecord;
 import com.brainacademy.airport.dao.PersistException;
-import com.brainacademy.airport.model.Model;
+import com.brainacademy.airport.entity.Entity;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by gladi on 24.11.2016.
  */
-public abstract class MySqlRecord implements DaoRecord {
+public abstract class MySqlRecord<T extends Entity> implements DaoRecord<T> {
     private Connection connection;
     protected String selectQuery;
     protected String selectLastInsert;
@@ -29,14 +29,14 @@ public abstract class MySqlRecord implements DaoRecord {
     }
 
     @Override
-    public void create(Model model) throws PersistException {
-        if (model.getId() != 0){
+    public void create(T entity) throws PersistException {
+        if (entity.getId() != 0){
             throw new PersistException("Object is already persist.");
         }
 
         //Insert record
         try(PreparedStatement pstm = connection.prepareStatement(createQuery)) {
-            setPreparedStatement(pstm, model, false);
+            setPreparedStatement(pstm, entity, false);
             int count = pstm.executeUpdate();
             if (count != 1){
                 throw new PersistException("On persist modify more then 1 record: " + count);
@@ -46,36 +46,36 @@ public abstract class MySqlRecord implements DaoRecord {
         }
 
 //        Get just inserting records and set userId
-        List<Model> newModel = select(selectLastInsert);
-        if (newModel == null || newModel.size() != 1){
-            throw new PersistException("Received more than one record: " + newModel.size());
+        List<T> newEntity = select(selectLastInsert);
+        if (newEntity == null || newEntity.size() != 1){
+            throw new PersistException("Received more than one record: " + newEntity.size());
         }else {
-            model.setId(newModel.get(0).getId());
+            entity.setId(newEntity.get(0).getId());
         }
     }
 
     @Override
-    public Model read(int id) throws PersistException {
-        List<Model> selectModel = null;
+    public T read(int id) throws PersistException {
+        List<T> selectEntity = null;
         try (PreparedStatement pstm = connection.prepareStatement(readQuery)){
             pstm.setInt(1, id);
-            selectModel = parseResultSet(pstm.executeQuery());
+            selectEntity = parseResultSet(pstm.executeQuery());
         } catch (SQLException e) {
             throw new PersistException(e);
         }
-        if (selectModel == null || selectModel.size() == 0){
+        if (selectEntity == null || selectEntity.size() == 0){
             throw new PersistException("Record with `user_id` = " + id + " not found.");
         }
-        if (selectModel.size() > 1){
-            throw new PersistException("Received more than one record: " + selectModel.size());
+        if (selectEntity.size() > 1){
+            throw new PersistException("Received more than one record: " + selectEntity.size());
         }
-        return selectModel.iterator().next();
+        return selectEntity.iterator().next();
     }
 
     @Override
-    public void update(Model model) throws PersistException {
+    public void update(T entity) throws PersistException {
         try (PreparedStatement pstm = connection.prepareStatement(updateQuery)){
-            setPreparedStatement(pstm, model, true);
+            setPreparedStatement(pstm, entity, true);
             int count = pstm.executeUpdate();
             if (count != 1){
                 throw new PersistException("On update modify more then 1 record: " + count);
@@ -86,9 +86,9 @@ public abstract class MySqlRecord implements DaoRecord {
     }
 
     @Override
-    public void delete(Model model) throws PersistException {
+    public void delete(T entity) throws PersistException {
         try (PreparedStatement pstm = connection.prepareStatement(deleteQuery)){
-            pstm.setInt(1, model.getId());
+            pstm.setInt(1, entity.getId());
             int count = pstm.executeUpdate();
             if (count != 1){
                 throw new PersistException("On delete modify more then 1 record: " + count);
@@ -99,29 +99,29 @@ public abstract class MySqlRecord implements DaoRecord {
     }
 
     @Override
-    public List<Model> getAll() throws PersistException {
+    public List<T> getAll() throws PersistException {
         return select(";");
     }
 
     @Override
-    public List<Model> select(String where) throws PersistException {
+    public List<T> select(String where) throws PersistException {
         String sql = selectQuery + where;
-        List<Model> selectModels = null;
+        List<T> selectEntities = null;
         try (PreparedStatement pstm = connection.prepareStatement(sql)){
-            selectModels = parseResultSet(pstm.executeQuery());
+            selectEntities = parseResultSet(pstm.executeQuery());
         } catch (SQLException e) {
             throw new PersistException(e);
         }
-        return selectModels;
+        return selectEntities;
     }
 
 
 
     //Set parametrs of PreparedStatement
-    protected abstract void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException;
+    protected abstract void setPreparedStatement(PreparedStatement ps, T entity, boolean where) throws SQLException;
 
     //Returns a list of objects from Result Set
-    protected abstract List<Model> parseResultSet(ResultSet rs) throws SQLException;
+    protected abstract List<T> parseResultSet(ResultSet rs) throws SQLException, PersistException;
 
     public Connection getConnection() {
         return connection;

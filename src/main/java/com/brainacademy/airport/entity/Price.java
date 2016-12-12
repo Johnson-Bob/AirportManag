@@ -1,15 +1,14 @@
-package com.brainacademy.airport.model;
+package com.brainacademy.airport.entity;
 
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Prices implements Model {
-    private int pricesId;
+public class Price extends Entity {
     private int flight;
     private int classFlight;
     private float price;
 
-    public Prices() {
+    public Price() {
     }
 
     public int getFlight() {
@@ -34,15 +33,5 @@ public class Prices implements Model {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    @Override
-    public int getId() {
-        return pricesId;
-    }
-
-    @Override
-    public void setId(int id) {
-        pricesId = id;
     }
 }

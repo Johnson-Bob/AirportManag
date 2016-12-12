@@ -4,8 +4,8 @@ import com.brainacademy.airport.dao.DaoFactory;
 import com.brainacademy.airport.dao.DaoRecord;
 import com.brainacademy.airport.dao.PersistException;
 import com.brainacademy.airport.dao.mysql.FactoryMySql;
-import com.brainacademy.airport.model.Cities;
-import com.brainacademy.airport.model.Users;
+import com.brainacademy.airport.entity.City;
+import com.brainacademy.airport.entity.User;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,11 +19,11 @@ public class Main {
         DaoFactory mysqlFactory = new FactoryMySql();
         try (Connection connection = mysqlFactory.getConnection()){
             Map<String, DaoRecord> mySQL = mysqlFactory.getDao(connection);
-            Users user = new Users("Test", "test456", false);
-            Cities cities = new Cities();
+            User user = new User("Test", "test456", false);
+            City city = new City();
             System.out.println(user);
             mySQL.get("users").create(user);
-            mySQL.get("users").create(cities);
+            mySQL.get("users").create(city);
             System.out.println(user);
             System.out.println(mySQL.get("Users").getAll());
             for (int i = 8; i <= 9; i++){

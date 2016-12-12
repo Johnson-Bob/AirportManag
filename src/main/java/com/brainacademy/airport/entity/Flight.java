@@ -1,13 +1,15 @@
-package com.brainacademy.airport.model;
+package com.brainacademy.airport.entity;
+
+import com.brainacademy.airport.dao.PersistException;
 
 import java.sql.Date;
 
 /**
  * Created by gladi on 22.11.2016.
  */
-public class Flights implements Model {
-    private int flightId;
-    private String type;
+public class Flight extends Entity {
+    public enum TypeFlight{ARRIVAL, DEPARTURE}
+    private TypeFlight type;
     private Date date;
     private String number;
     private int city;
@@ -15,15 +17,19 @@ public class Flights implements Model {
     private int status;
     private int gate;
 
-    public Flights() {
+    public Flight() {
     }
 
     public String getType() {
-        return type;
+        return type.name();
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(String type) throws PersistException {
+        try {
+            this.type = TypeFlight.valueOf(type);
+        }catch (IllegalArgumentException | NullPointerException e){
+            throw new PersistException(e);
+        }
     }
 
     public Date getDate() {
@@ -72,15 +78,5 @@ public class Flights implements Model {
 
     public void setGate(int gate) {
         this.gate = gate;
-    }
-
-    @Override
-    public int getId() {
-        return flightId;
-    }
-
-    @Override
-    public void setId(int id) {
-        flightId = id;
     }
 }

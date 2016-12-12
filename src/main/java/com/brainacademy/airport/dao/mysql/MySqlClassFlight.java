@@ -1,7 +1,7 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.model.Classes;
-import com.brainacademy.airport.model.Model;
+import com.brainacademy.airport.entity.ClassFlight;
+import com.brainacademy.airport.entity.Entity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ import java.util.List;
 /**
  * Created by gladi on 08.12.2016.
  */
-public class MySqlClasses extends MySqlRecord {
-    public MySqlClasses(Connection connection) {
+public class MySqlClassFlight extends MySqlRecord<ClassFlight> {
+    public MySqlClassFlight(Connection connection) {
         super(connection);
         selectQuery = "SELECT * FROM classes";
         selectLastInsert = " WHERE class_id = LAST_INSERT_ID();";
@@ -25,22 +25,21 @@ public class MySqlClasses extends MySqlRecord {
     }
 
     @Override
-    protected void setPreparedStatement(PreparedStatement ps, Model model, boolean where) throws SQLException {
-        Classes classes = (Classes) model;
-        ps.setString(1, classes.getClassName());
+    protected void setPreparedStatement(PreparedStatement ps, ClassFlight entity, boolean where) throws SQLException {
+        ps.setString(1, entity.getClassFlight());
         if (where){
-            ps.setInt(2, classes.getId());
+            ps.setInt(2, entity.getId());
         }
     }
 
     @Override
-    protected List<Model> parseResultSet(ResultSet rs) throws SQLException {
-        List<Model> result = new ArrayList<>();
+    protected List<ClassFlight> parseResultSet(ResultSet rs) throws SQLException {
+        List<ClassFlight> result = new ArrayList<>();
         while (rs.next()){
-            Classes classes = new Classes();
-            classes.setId(rs.getInt("class_id"));
-            classes.setClassName(rs.getString("class_name"));
-            result.add(classes);
+            ClassFlight classFlight = new ClassFlight();
+            classFlight.setId(rs.getInt("class_id"));
+            classFlight.setClassFlight(rs.getString("class_name"));
+            result.add(classFlight);
         }
         return result;
     }
