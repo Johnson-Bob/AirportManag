@@ -26,7 +26,7 @@ public class Flight extends Entity {
 
     public void setType(String type) throws PersistException {
         try {
-            this.type = TypeFlight.valueOf(type);
+            this.type = TypeFlight.valueOf(type.toUpperCase());
         }catch (IllegalArgumentException | NullPointerException e){
             throw new PersistException(e);
         }

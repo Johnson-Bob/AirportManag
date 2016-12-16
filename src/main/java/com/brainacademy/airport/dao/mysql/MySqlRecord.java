@@ -3,6 +3,7 @@ package com.brainacademy.airport.dao.mysql;
 import com.brainacademy.airport.dao.DaoRecord;
 import com.brainacademy.airport.dao.PersistException;
 import com.brainacademy.airport.entity.Entity;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

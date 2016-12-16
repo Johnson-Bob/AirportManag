@@ -4,12 +4,15 @@ import com.brainacademy.airport.dao.DaoFactory;
 import com.brainacademy.airport.dao.DaoRecord;
 import com.brainacademy.airport.dao.PersistException;
 import com.brainacademy.airport.dao.mysql.FactoryMySql;
-import com.brainacademy.airport.entity.City;
-import com.brainacademy.airport.entity.User;
+import com.brainacademy.airport.entity.Flight;
+import com.brainacademy.airport.ui.AirlineInfo;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 /**
  * Created by gladi on 08.12.2016.
@@ -18,20 +21,14 @@ public class Main {
     public static void main(String[] args) {
         DaoFactory mysqlFactory = new FactoryMySql();
         try (Connection connection = mysqlFactory.getConnection()){
-            Map<String, DaoRecord> mySQL = mysqlFactory.getDao(connection);
-            User user = new User("Test", "test456", false);
-            City city = new City();
-            System.out.println(user);
-            mySQL.get("users").create(user);
-            mySQL.get("users").create(city);
-            System.out.println(user);
-            System.out.println(mySQL.get("Users").getAll());
-            for (int i = 8; i <= 9; i++){
-                mySQL.get("Users").delete(mySQL.get("Users").read(i));
-            }
-            user.setName("Vasya");
-            mySQL.get("Users").update(user);
-            System.out.println(mySQL.get("Users").getAll());
+            Map<String, DaoRecord> dao = mysqlFactory.getDao(connection);
+            List<Flight> flights = dao.get("flights").getAll();
+            System.out.println(flights.get(0).getDate());
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    AirlineInfo.createAndShowGUI(new Vector<Flight>(flights));
+                }
+            });
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (PersistException e) {

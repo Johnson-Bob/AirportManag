@@ -1,7 +1,6 @@
 package com.brainacademy.airport.dao.mysql;
 
 import com.brainacademy.airport.entity.Gate;
-import com.brainacademy.airport.entity.Entity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

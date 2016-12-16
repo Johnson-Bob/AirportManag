@@ -1,6 +1,5 @@
 package com.brainacademy.airport.dao.mysql;
 
-import com.brainacademy.airport.entity.Entity;
 import com.brainacademy.airport.entity.Ticket;
 
 import java.sql.Connection;

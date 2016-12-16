@@ -1,7 +1,6 @@
 package com.brainacademy.airport.dao.mysql;
 
 import com.brainacademy.airport.dao.PersistException;
-import com.brainacademy.airport.entity.Entity;
 import com.brainacademy.airport.entity.Passenger;
 
 import java.sql.Connection;
