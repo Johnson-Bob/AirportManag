@@ -20,7 +20,7 @@ import java.util.Vector;
 public class Main {
     public static void main(String[] args) {
         DaoFactory mysqlFactory = new FactoryMySql();
-        try (Connection connection = mysqlFactory.getConnection()){
+        try (Connection connection = mysqlFactory.getConnection()) {
             Map<String, DaoRecord> dao = mysqlFactory.getDao(connection);
             List<Flight> flights = dao.get("flights").getAll();
             System.out.println(flights.get(0).getDate());
@@ -36,3 +36,4 @@ public class Main {
         }
     }
 }
+

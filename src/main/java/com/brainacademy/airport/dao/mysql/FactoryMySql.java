@@ -3,21 +3,26 @@ package com.brainacademy.airport.dao.mysql;
 import com.brainacademy.airport.dao.DaoFactory;
 import com.brainacademy.airport.dao.DaoRecord;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by gladi on 23.11.2016.
  */
 public class FactoryMySql implements DaoFactory {
-    private String user = "root";
-    private String password = "123456";
-    private String url = "jdbc:mysql://localhost:3306/airport?useSSL=false";
+    private String user;
+    private String password;
+    private String url;
 
     public FactoryMySql() {
+        setProperties();
     }
 
     @Override
@@ -47,23 +52,29 @@ public class FactoryMySql implements DaoFactory {
         return user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setProperties(){
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("config.properties")){
+            Properties prop = new Properties();
+            if (is != null){
+                prop.load(is);
+            } else {
+                throw new FileNotFoundException("config.properties not found");
+            }
+
+            //get the property value and set them
+            user = prop.getProperty("user");
+            password = prop.getProperty("password");
+            url = prop.getProperty("url");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
