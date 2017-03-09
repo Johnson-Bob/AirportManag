@@ -27,7 +27,6 @@ public class FactoryMySql implements DaoFactory {
 
     @Override
     public Connection getConnection() throws SQLException {
-
         return DriverManager.getConnection(url, user, password);
     }
 
